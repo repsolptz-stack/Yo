@@ -804,6 +804,98 @@
       display: block;
     }
 
+    .phrase-card {
+      background: var(--bg-sand);
+      border: 1px solid #E5DDD0;
+      border-radius: 15px;
+      padding: 10px 11px;
+      margin-top: 8px;
+    }
+
+    .phrase-tag-say {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--teal-deep);
+      background: #DCE6E4;
+      padding: 2px 7px;
+      border-radius: 7px;
+      margin-bottom: 5px;
+    }
+
+    .phrase-tag-avoid {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #6E3228;
+      background: #F2DDD8;
+      padding: 2px 7px;
+      border-radius: 7px;
+      margin-bottom: 4px;
+    }
+
+    .phrase-quote {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-main);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .phrase-avoid-text {
+      font-size: 11.5px;
+      color: #5C4944;
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .phrase-copy-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 7px;
+    }
+
+    .tips-section-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--teal-deep);
+      margin: 14px 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tip-card {
+      background: var(--bg-sand);
+      border: 1px solid #E5DDD0;
+      border-radius: 15px;
+      padding: 10px 11px;
+      margin-bottom: 8px;
+    }
+
+    .tip-card:last-child {
+      margin-bottom: 0;
+    }
+
+    .tip-card-head {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-main);
+      margin-bottom: 4px;
+    }
+
+    .tip-card-body {
+      font-size: 11.5px;
+      color: #4A433C;
+      line-height: 1.4;
+      margin: 0;
+    }
+
     .toast-msg {
       position: fixed;
       top: 74px;
@@ -1005,7 +1097,7 @@
         <div class="section-heading"><span>Тест и памятки для близких</span></div>
         <div class="subtabs">
           <button type="button" id="subBtnTest" class="subtab-btn active" onclick="switchSubTab('test')">Экспресс-тест (6)</button>
-          <button type="button" id="subBtnGuides" class="subtab-btn" onclick="switchSubTab('guides')">Памятки (4)</button>
+          <button type="button" id="subBtnGuides" class="subtab-btn" onclick="switchSubTab('guides')">Фразы и памятки</button>
         </div>
 
         <div id="subPanelTest" class="card-panel">
@@ -1018,29 +1110,118 @@
         </div>
 
         <div id="subPanelGuides" class="card-panel" style="display:none;">
+          <div style="font-size:11.5px;color:var(--ink-muted);margin-bottom:8px;">
+            Спокойные формулировки без скандалов и упрёков — можно скопировать перед разговором.
+          </div>
+
           <div class="faq-row open">
             <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
-              <span>01. Что делать прямо сейчас</span><span>▾</span>
+              <span>01. Как начать разговор без обвинений</span><span>▾</span>
             </button>
-            <div class="faq-answer">Остановите панику, запишите конкретные факты и свяжитесь с консультантом Аней.</div>
+            <div class="faq-answer">
+              Говорите только в трезвом состоянии и через свои чувства и факты, а не через ярлыки.
+              <div class="phrase-card">
+                <span class="phrase-tag-say">Что сказать</span>
+                <p class="phrase-quote">«Я вижу, что в последнее время тебе тяжело, и я очень переживаю за тебя и нашу семью. Я не хочу ругаться или читать лекции — давай спокойно подумаем, как с этим справиться».</p>
+                <div class="phrase-copy-row">
+                  <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
+                </div>
+              </div>
+              <div class="phrase-card">
+                <span class="phrase-tag-avoid">Чего лучше избегать</span>
+                <p class="phrase-avoid-text">«Ты опять всё испортил, ты зависимый, посмотри, в кого ты превратился» — это сразу включает защиту и агрессию.</p>
+              </div>
+            </div>
           </div>
+
           <div class="faq-row">
             <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
-              <span>02. Как говорить при отрицании</span><span>▾</span>
+              <span>02. Как отказать в деньгах и закрытии долгов</span><span>▾</span>
             </button>
-            <div class="faq-answer">Говорите только на трезвую голову, опирайтесь на факты и не вступайте в долгие споры.</div>
+            <div class="faq-answer">
+              Помощь деньгами продлевает проблему. Отказ должен быть спокойным, коротким и без оправданий.
+              <div class="phrase-card">
+                <span class="phrase-tag-say">Что сказать</span>
+                <p class="phrase-quote">«Я люблю тебя и готов(а) помочь с лечением и консультацией, но деньги давать и закрывать долги я больше не буду. Это моё твёрдое решение».</p>
+                <div class="phrase-copy-row">
+                  <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
+                </div>
+              </div>
+              <div class="phrase-card">
+                <span class="phrase-tag-avoid">Чего лучше избегать</span>
+                <p class="phrase-avoid-text">«Хорошо, в самый последний раз переведу, только пообещай, что больше не будешь».</p>
+              </div>
+            </div>
           </div>
+
           <div class="faq-row">
             <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
-              <span>03. Чего делать нельзя</span><span>▾</span>
+              <span>03. Как предложить обратиться за помощью</span><span>▾</span>
             </button>
-            <div class="faq-answer">Не закрывайте долги и микрозаймы вместо близкого и не давайте деньги на срывы.</div>
+            <div class="faq-answer">
+              Снимайте страх перед неизвестностью и не давите решением за одну секунду.
+              <div class="phrase-card">
+                <span class="phrase-tag-say">Что сказать</span>
+                <p class="phrase-quote">«Тебе не обязательно справляться с этим в одиночку. Давай просто анонимно поговорим со специалистом — без постановки на учёт и давления, просто чтобы понять варианты».</p>
+                <div class="phrase-copy-row">
+                  <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
+                </div>
+              </div>
+              <div class="phrase-card">
+                <span class="phrase-tag-avoid">Чего лучше избегать</span>
+                <p class="phrase-avoid-text">Угроз, которые вы не готовы выполнить, и споров, когда человек в опьянении или на отходняке.</p>
+              </div>
+            </div>
           </div>
+
           <div class="faq-row">
             <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
-              <span>04. Экстренная ситуация</span><span>▾</span>
+              <span>04. Если давит на вину («вы меня не понимаете»)</span><span>▾</span>
             </button>
-            <div class="faq-answer">При угрозе жизни или передозировке звоните 103 или 112.</div>
+            <div class="faq-answer">
+              Не втягивайтесь в спор и не оправдывайтесь — возвращайте разговор к сути.
+              <div class="phrase-card">
+                <span class="phrase-tag-say">Что сказать</span>
+                <p class="phrase-quote">«Я слышу, что ты злишься, но спорить сейчас не буду. Когда будешь готов(а) спокойно обсудить, как выйти из этой ситуации, я рядом».</p>
+                <div class="phrase-copy-row">
+                  <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>05. Экстренная ситуация (103 / 112)</span><span>▾</span>
+            </button>
+            <div class="faq-answer">
+              Если есть потеря сознания, судороги, проблемы с дыханием или угроза жизни — не ждите и не ведите разговоров, сразу вызывайте скорую помощь: <strong>103</strong> или <strong>112</strong>.
+            </div>
+          </div>
+
+          <div class="tips-section-title">
+            <span>Практические советы для близких</span>
+            <span style="font-size:10.5px;font-weight:600;color:var(--ink-muted);">На каждый день</span>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-card-head">1. Фиксируйте факты, а не эмоции</div>
+            <p class="tip-card-body">Коротко записывайте даты срывов, суммы долгов и договорённости. В разговоре это помогает опираться на реальность, а не спорить о том, «кому показалось».</p>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-card-head">2. Защитите документы, карты и наличные</div>
+            <p class="tip-card-body">Держите паспорт, СНИЛС, банковские карты и наличные в надёжном месте, недоступном в момент срыва или срочного поиска денег.</p>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-card-head">3. Не берите на себя чужую ответственность</div>
+            <p class="tip-card-body">Звонки на работу, объяснения с кредиторами и покрытие прогулов создают иллюзию безопасности и оттягивают момент, когда человек сам увидит последствия.</p>
+          </div>
+
+          <div class="tip-card">
+            <div class="tip-card-head">4. Держите свой ресурс хотя бы на минимуме</div>
+            <p class="tip-card-body">Сон, еда, короткая прогулка и разговор с тем, кто не осуждает, нужны не для «эгоизма», а чтобы у вас оставались силы принимать трезвые решения.</p>
           </div>
         </div>
       </section>
@@ -1351,10 +1532,36 @@
       document.getElementById('tgSendLink').href = 'https://t.me/Antoinette_nonarko?text=' + encodeURIComponent(msg);
     }
 
-    function copyMessageText() {
-      const msg = buildMessage();
+    function copyTextSafe(text, toastLabel) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(msg).then(() => showToast('Текст скопирован')).catch(() => {});
+        navigator.clipboard.writeText(text).then(() => showToast(toastLabel)).catch(() => fallbackCopy(text, toastLabel));
+      } else {
+        fallbackCopy(text, toastLabel);
+      }
+    }
+
+    function fallbackCopy(text, toastLabel) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(toastLabel);
+      } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    function copyMessageText() {
+      copyTextSafe(buildMessage(), 'Текст скопирован');
+    }
+
+    function copyPhrase(btn) {
+      const quoteEl = btn.closest('.phrase-card').querySelector('.phrase-quote');
+      if (quoteEl) {
+        copyTextSafe(quoteEl.textContent.trim(), 'Фраза скопирована');
       }
     }
 
