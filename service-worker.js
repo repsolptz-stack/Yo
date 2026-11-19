@@ -4,8 +4,7 @@ const CORE_ASSETS = [
   '/Yo/',
   '/Yo/index.html',
   '/Yo/manifest.json',
-  '/Yo/icons/icon-192.png',
-  '/Yo/icons/icon-512.png'
+
 ];
 
 self.addEventListener('install', (event) => {
