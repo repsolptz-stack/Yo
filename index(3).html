@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#F6F1E9" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="НоНарко | ПТЗ" />
+  <title>НоНарко | ПТЗ — Помощь при зависимостях в Петрозаводске</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-sand: #F6F1E9;
+      --bg-card: #FAF7F2;
+      --bg-soft: #EFE8DC;
+      --wood-dark: #2E231D;
+      --wood-mid: #3A2C24;
+      --teal-deep: #1E3B3E;
+      --teal-plaster: #4A787A;
+      --teal-soft: #6D9697;
+      --ochre-glow: #E3B778;
+      --ochre-light: #F2D7A8;
+      --ink-main: #1F2424;
+      --ink-muted: #5C554E;
+      --line-soft: rgba(46, 35, 29, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    h1, h2, h3, .font-display {
+      font-family: 'Manrope', 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #E7DFD3;
+      color: var(--ink-main);
+      overflow-x: hidden;
+      line-height: 1.45;
+    }
+
+    .app-shell {
+      max-width: 440px;
+      margin: 0 auto;
+      min-height: 100vh;
+      min-height: 100dvh;
+      background-color: var(--bg-sand);
+      background-image:
+        radial-gradient(circle at 12% 6%, rgba(227, 183, 120, 0.18), transparent 38%),
+        radial-gradient(circle at 90% 18%, rgba(74, 120, 122, 0.14), transparent 42%);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 55px rgba(46, 35, 29, 0.16);
+    }
+
+    .plaster-surface {
+      background:
+        radial-gradient(circle at 82% 24%, rgba(227, 183, 120, 0.68) 0%, rgba(242, 215, 168, 0.25) 38%, transparent 66%),
+        radial-gradient(circle at 18% 82%, rgba(227, 183, 120, 0.52) 0%, transparent 54%),
+        linear-gradient(135deg, #B9CECD 0%, #7EA2A3 48%, #5B898A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plaster-tile {
+      background:
+        radial-gradient(circle at 88% 85%, rgba(227, 183, 120, 0.62) 0%, transparent 64%),
+        radial-gradient(circle at 15% 15%, rgba(220, 230, 228, 0.85) 0%, transparent 56%),
+        linear-gradient(145deg, #BFD2D1 0%, #83A7A8 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plaster-tile-alt {
+      background:
+        radial-gradient(circle at 20% 85%, rgba(227, 183, 120, 0.65) 0%, transparent 62%),
+        radial-gradient(circle at 85% 20%, rgba(220, 230, 228, 0.8) 0%, transparent 56%),
+        linear-gradient(155deg, #98B7B7 0%, #6D9697 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plaster-surface::before,
+    .plaster-tile::before,
+    .plaster-tile-alt::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 0);
+      background-size: 14px 14px;
+      opacity: 0.42;
+      pointer-events: none;
+    }
+
+    .wood-surface {
+      background: linear-gradient(165deg, #46352B 0%, #2E231D 100%);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(246, 241, 233, 0.94);
+      backdrop-filter: blur(12px);
+      padding: 10px 14px 9px;
+      border-bottom: 1px solid #E5DDD0;
+    }
+
+    .topbar-row-1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .brand-nn {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--teal-deep);
+      flex-shrink: 0;
+    }
+
+    .brand-divider {
+      width: 1.5px;
+      height: 18px;
+      background: rgba(30, 59, 62, 0.28);
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink-main);
+      white-space: nowrap;
+    }
+
+    .anon-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #382A22;
+      color: #F6F1E9;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .topbar-row-2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 7px;
+    }
+
+    .city-caption {
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .top-btns {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 9px;
+      border: 1px solid #DCD2C2;
+      background: var(--bg-soft);
+      color: var(--teal-deep);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .exit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: var(--wood-dark);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .main-area {
+      flex: 1;
+      padding: 12px 14px calc(102px + env(safe-area-inset-bottom));
+    }
+
+    .tab-view {
+      display: none;
+      animation: fadeTab 0.22s ease;
+    }
+
+    .tab-view.active {
+      display: block;
+    }
+
+    @keyframes fadeTab {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-box {
+      border-radius: 24px;
+      padding: 18px 16px;
+      border: 1px solid rgba(142, 176, 177, 0.45);
+      box-shadow: 0 8px 22px rgba(46, 35, 29, 0.08);
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .hero-box h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.18;
+      font-weight: 800;
+      color: #1E2424;
+      text-transform: uppercase;
+    }
+
+    .hero-box p {
+      position: relative;
+      z-index: 1;
+      margin: 7px auto 12px;
+      max-width: 300px;
+      font-size: 12.5px;
+      color: #232D2D;
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-primary-wood {
+      background: #382A22;
+      color: #FAF7F2;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary-teal {
+      background: #4D7C7E;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .section-heading {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink-main);
+      margin: 0 0 8px 2px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .consultant-card {
+      background: var(--bg-card);
+      border: 1px solid #E5DDD0;
+      border-radius: 22px;
+      padding: 12px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(46, 35, 29, 0.04);
+    }
+
+    .consultant-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .consultant-badge-col {
+      width: 126px;
+      flex-shrink: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .consultant-photo-box {
+      position: relative;
+      height: 104px;
+      background: #3A2C24;
+    }
+
+    .consultant-photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .consultant-photo-fade {
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 24px;
+      background: linear-gradient(to top, #2E231D, transparent);
+    }
+
+    .consultant-caption-bar {
+      padding: 4px 8px 8px;
+      text-align: center;
+      color: #FAF7F2;
+    }
+
+    .consultant-name-line {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 11.5px;
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ochre-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ochre-glow);
+      display: inline-block;
+    }
+
+    .consultant-exp {
+      font-size: 9.5px;
+      color: #E6DDD0;
+      line-height: 1.25;
+      margin-top: 2px;
+    }
+
+    .consultant-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .consultant-lead {
+      margin: 0 0 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-main);
+      line-height: 1.35;
+    }
+
+    .consultant-sub {
+      margin: 0;
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .story-toggle-btn {
+      margin-top: 8px;
+      width: 100%;
+      background: var(--bg-soft);
+      border: none;
+      border-radius: 12px;
+      padding: 7px 10px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--wood-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .story-drawer {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #E5DDD0;
+      font-size: 12px;
+      color: #3C3630;
+    }
+
+    .story-drawer.open {
+      display: block;
+    }
+
+    .quote-strip {
+      margin-top: 8px;
+      padding: 9px 11px;
+      border-radius: 0 12px 12px 0;
+      background: var(--bg-sand);
+      border-left: 3px solid var(--ochre-glow);
+      font-style: italic;
+      color: var(--wood-dark);
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .help-tile {
+      border: 1px solid rgba(142, 176, 177, 0.45);
+      border-radius: 18px;
+      padding: 12px;
+      min-height: 92px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .help-tile-wide {
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      min-height: 76px;
+    }
+
+    .tile-top {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: rgba(30, 59, 62, 0.8);
+    }
+
+    .tile-title {
+      position: relative;
+      z-index: 1;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-main);
+      line-height: 1.25;
+      margin-top: 6px;
+    }
+
+    .card-panel {
+      background: var(--bg-card);
+      border: 1px solid #E5DDD0;
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-sand);
+      border-radius: 15px;
+      padding: 10px;
+      margin-bottom: 8px;
+    }
+
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--teal-deep);
+      color: #FAF7F2;
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .faq-row {
+      border-bottom: 1px solid #E5DDD0;
+      padding: 8px 0;
+    }
+
+    .faq-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 2px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-main);
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      font-size: 12px;
+      color: #4A433C;
+      padding-top: 6px;
+    }
+
+    .faq-row.open .faq-answer {
+      display: block;
+    }
+
+    .subtabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      background: var(--bg-soft);
+      padding: 5px;
+      border-radius: 16px;
+      margin-bottom: 12px;
+    }
+
+    .subtab-btn {
+      border: none;
+      border-radius: 12px;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      color: var(--wood-mid);
+    }
+
+    .subtab-btn.active {
+      background: #382A22;
+      color: #FAF7F2;
+    }
+
+    .q-card {
+      background: var(--bg-sand);
+      border: 1px solid #E5DDD0;
+      border-radius: 16px;
+      padding: 11px;
+      margin-bottom: 10px;
+    }
+
+    .q-opts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .q-opt-btn {
+      border: 1px solid #DCD2C2;
+      background: var(--bg-card);
+      color: var(--wood-mid);
+      border-radius: 11px;
+      padding: 7px 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .q-opt-btn.picked-0 {
+      background: var(--teal-plaster);
+      color: #FFF;
+      border-color: var(--teal-plaster);
+    }
+
+    .q-opt-btn.picked-1 {
+      background: var(--ochre-glow);
+      color: var(--wood-dark);
+      border-color: #D4A460;
+    }
+
+    .q-opt-btn.picked-2 {
+      background: #382A22;
+      color: var(--ochre-light);
+      border-color: #382A22;
+    }
+
+    .form-field {
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      background: var(--bg-sand);
+      border: 1px solid #DCD2C2;
+      border-radius: 14px;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--ink-main);
+    }
+
+    .chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .chip-btn {
+      border: 1px solid #DCD2C2;
+      background: var(--bg-sand);
+      color: var(--wood-mid);
+      border-radius: 11px;
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .chip-btn.active {
+      background: var(--teal-plaster);
+      color: #FFF;
+      border-color: var(--teal-plaster);
+    }
+
+    .preview-card {
+      border-radius: 22px;
+      padding: 14px;
+      color: #FAF7F2;
+      box-shadow: 0 8px 20px rgba(46, 35, 29, 0.14);
+    }
+
+    .preview-text {
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 10px;
+      font-size: 12px;
+      white-space: pre-line;
+      margin: 10px 0;
+    }
+
+    .bottom-bar-wrap {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 35;
+      padding: 4px 12px calc(8px + env(safe-area-inset-bottom));
+      pointer-events: none;
+    }
+
+    .bottom-bar {
+      max-width: 416px;
+      margin: 0 auto;
+      background: var(--teal-deep);
+      color: #DCE6E4;
+      border-radius: 26px;
+      padding: 5px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      box-shadow: 0 10px 28px rgba(30, 59, 62, 0.34);
+      pointer-events: auto;
+    }
+
+    .tab-nav-btn {
+      border: none;
+      background: transparent;
+      color: rgba(220, 230, 228, 0.85);
+      border-radius: 20px;
+      padding: 7px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: 10.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .tab-nav-btn.active {
+      background: #382A22;
+      color: var(--ochre-light);
+      font-weight: 700;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(31, 36, 36, 0.62);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 390px;
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 18px;
+      border: 1px solid #E5DDD0;
+    }
+
+    .weather-mask {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: linear-gradient(180deg, #4B799E 0%, #6795B8 55%, #8FB5D1 100%);
+      color: #FFF;
+      padding: 24px 18px;
+    }
+
+    .weather-mask.active {
+      display: block;
+    }
+
+    .toast-msg {
+      position: fixed;
+      top: 74px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 80;
+      background: var(--wood-dark);
+      color: #FAF7F2;
+      border: 1px solid rgba(227, 183, 120, 0.45);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      display: none;
+      white-space: nowrap;
+    }
+
+    .toast-msg.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="weatherMask" class="weather-mask">
+    <div style="max-width: 420px; margin: 0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.22); padding-bottom:12px;">
+        <div>
+          <div style="font-size:11px; text-transform:uppercase; opacity:0.85;">Метеослужба Карелии</div>
+          <div style="font-size:22px; font-weight:800;">Петрозаводск</div>
+        </div>
+        <span style="font-size:11px; background:rgba(255,255,255,0.16); padding:5px 10px; border-radius:999px;">Сегодня</span>
+      </div>
+      <div style="text-align:center; margin: 36px 0;">
+        <button id="returnFromWeatherBtn" type="button" style="background:rgba(255,255,255,0.18); border:none; border-radius:999px; padding:14px 20px; color:#FFF4C2; font-size:28px; cursor:pointer;" title="Нажмите, чтобы вернуться">☁️</button>
+        <div style="font-size:52px; font-weight:800; margin-top:10px;">-3°C</div>
+        <div style="font-size:15px; opacity:0.95;">Облачно с прояснениями • Ветер 3 м/с</div>
+        <div style="font-size:11px; opacity:0.65; margin-top:8px;">Нажмите на облако для возврата</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastMsg" class="toast-msg"></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-row-1">
+        <div class="brand-group">
+          <span class="brand-nn">НН</span>
+          <span class="brand-divider"></span>
+          <span class="brand-name">НоНарко | ПТЗ</span>
+        </div>
+        <span class="anon-badge">Анонимно 🔒</span>
+      </div>
+      <div class="topbar-row-2">
+        <span class="city-caption">Помощь при зависимостях • Петрозаводск</span>
+        <div class="top-btns">
+          <button type="button" class="mini-btn" onclick="openModal('installModal')">📲 Установить</button>
+          <button type="button" class="exit-btn" onclick="toggleWeatherMask(true)">Выход ✕</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-area">
+      <!-- ГЛАВНАЯ -->
+      <section id="view-home" class="tab-view active">
+        <div class="hero-box plaster-surface">
+          <h1>ВЫХОД БЛИЖЕ,<br/>ЧЕМ КАЖЕТСЯ</h1>
+          <p>Бережная поддержка для семей, столкнувшихся с зависимостью близкого в Петрозаводске</p>
+          <div class="hero-actions">
+            <button type="button" class="btn-primary-wood" onclick="goBookingWithTopic('Индивидуальная консультация')">Записаться</button>
+            <button type="button" class="btn-primary-teal" onclick="openModal('callModal')">Позвонить</button>
+          </div>
+        </div>
+
+        <div class="section-heading"><span>Консультант кабинета</span></div>
+        <div class="consultant-card">
+          <div class="consultant-row">
+            <div class="consultant-badge-col wood-surface">
+              <div class="consultant-photo-box">
+                <img
+                  src="https://i.postimg.cc/jSCcr2GF/Su6-Ra5HXLI.jpg"
+                  alt="Консультант Аня"
+                  onerror="this.onerror=null;this.src='https://placehold.co/260x240/3A2C24/E3B778?text=%D0%90%D0%BD%D1%8F';"
+                />
+                <div class="consultant-photo-fade"></div>
+              </div>
+              <div class="consultant-caption-bar">
+                <div class="consultant-name-line"><span>АНЯ</span><span class="ochre-dot"></span></div>
+                <div class="consultant-exp">Волонтёрский опыт более 5 лет</div>
+              </div>
+            </div>
+
+            <div class="consultant-info-col">
+              <div>
+                <p class="consultant-lead">Бесплатные и анонимные консультации для родственников в Петрозаводске</p>
+                <p class="consultant-sub">Помогаю разобраться без осуждения, паники и постановки на учёт.</p>
+              </div>
+              <button type="button" class="story-toggle-btn" onclick="toggleStory()">
+                <span>История и цитата</span>
+                <span id="storyArrow">▾</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="storyDrawer" class="story-drawer">
+            <p style="margin:0;">
+              Более 5 лет я работаю с семьями в Петрозаводске и Карелии. Кабинет работает по адресу: <strong>Лососинское шоссе, 7, второй этаж</strong> — можно прийти очно или написать онлайн.
+            </p>
+            <div class="quote-strip">
+              «Счастье можно найти даже в самые тёмные времена, если не забывать обращаться к свету»
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <span>Чем я могу помочь</span>
+          <span style="font-size:11px;font-weight:500;color:var(--ink-muted);">Нажмите для записи</span>
+        </div>
+        <div class="help-grid">
+          <button type="button" class="help-tile plaster-tile" onclick="goBookingWithTopic('Замотивировать на лечение')">
+            <div class="tile-top"><span>01</span><span>→</span></div>
+            <div class="tile-title">Замотивировать на лечение</div>
+          </button>
+
+          <button type="button" class="help-tile plaster-tile-alt" onclick="goBookingWithTopic('Объяснить механизм зависимости')">
+            <div class="tile-top"><span>02</span><span>→</span></div>
+            <div class="tile-title">Объяснить механизм зависимости</div>
+          </button>
+
+          <button type="button" class="help-tile plaster-tile-alt" onclick="goBookingWithTopic('Организовать изоляцию и терапию')">
+            <div class="tile-top"><span>03</span><span>→</span></div>
+            <div class="tile-title">Организовать изоляцию и терапию</div>
+          </button>
+
+          <button type="button" class="help-tile plaster-tile" onclick="goBookingWithTopic('Выбрать реабилитационный центр')">
+            <div class="tile-top"><span>04</span><span>→</span></div>
+            <div class="tile-title">Выбрать реабилитационный центр</div>
+          </button>
+
+          <button type="button" class="help-tile help-tile-wide plaster-surface" onclick="goBookingWithTopic('Индивидуальная консультация')">
+            <div style="position:relative;z-index:1;flex:1;">
+              <div style="font-size:10px;font-weight:800;color:#1E3B3E;">05 • ЛИЧНЫЙ РАЗБОР</div>
+              <div class="tile-title" style="margin-top:2px;">Индивидуальная консультация</div>
+            </div>
+            <span style="position:relative;z-index:1;width:30px;height:30px;border-radius:11px;background:#382A22;color:#FAF7F2;display:grid;place-items:center;font-weight:700;">→</span>
+          </button>
+        </div>
+
+        <div class="card-panel">
+          <div class="section-heading"><span>С чего начать родственнику</span></div>
+          <div class="step-item">
+            <span class="step-circle">1</span>
+            <div>
+              <div style="font-size:12.5px;font-weight:700;">Оцените ситуацию без паники</div>
+              <div style="font-size:11.5px;color:var(--ink-muted);">Пройдите экспресс-тест во вкладке «Тест / Гайд».</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-circle" style="background:var(--teal-plaster);">2</span>
+            <div>
+              <div style="font-size:12.5px;font-weight:700;">Не закрывайте долги вместо близкого</div>
+              <div style="font-size:11.5px;color:var(--ink-muted);">Изучите короткие памятки перед важным разговором.</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-circle" style="background:#382A22;color:var(--ochre-light);">3</span>
+            <div>
+              <div style="font-size:12.5px;font-weight:700;">Свяжитесь с консультантом Аней</div>
+              <div style="font-size:11.5px;color:var(--ink-muted);">Составим спокойный пошаговый план для вашей семьи.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="section-heading"><span>Частые вопросы</span></div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>Это анонимно и бесплатно?</span><span>▾</span>
+            </button>
+            <div class="faq-answer">Да. Обратиться можно под любым именем, консультации в кабинете бесплатные.</div>
+          </div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>Что делать, если близкий против лечения?</span><span>▾</span>
+            </button>
+            <div class="faq-answer">Родственники часто обращаются первыми — поможем выстроить разговор и мотивацию.</div>
+          </div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>Где находится кабинет в Петрозаводске?</span><span>▾</span>
+            </button>
+            <div class="faq-answer">г. Петрозаводск, Лососинское шоссе, 7, второй этаж — по предварительной записи.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ТЕСТ / ГАЙД -->
+      <section id="view-help" class="tab-view">
+        <div class="section-heading"><span>Тест и памятки для близких</span></div>
+        <div class="subtabs">
+          <button type="button" id="subBtnTest" class="subtab-btn active" onclick="switchSubTab('test')">Экспресс-тест (6)</button>
+          <button type="button" id="subBtnGuides" class="subtab-btn" onclick="switchSubTab('guides')">Памятки (4)</button>
+        </div>
+
+        <div id="subPanelTest" class="card-panel">
+          <div id="testQuestionsBox"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button type="button" class="btn-primary-wood" style="flex:1;" onclick="calcFamilyTest()">Узнать результат</button>
+            <button type="button" class="chip-btn" onclick="resetFamilyTest()">Сброс</button>
+          </div>
+          <div id="testResultBox" style="display:none;margin-top:12px;padding:12px;border-radius:15px;background:var(--bg-sand);border:1px solid var(--teal-plaster);"></div>
+        </div>
+
+        <div id="subPanelGuides" class="card-panel" style="display:none;">
+          <div class="faq-row open">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>01. Что делать прямо сейчас</span><span>▾</span>
+            </button>
+            <div class="faq-answer">Остановите панику, запишите конкретные факты и свяжитесь с консультантом Аней.</div>
+          </div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>02. Как говорить при отрицании</span><span>▾</span>
+            </button>
+            <div class="faq-answer">Говорите только на трезвую голову, опирайтесь на факты и не вступайте в долгие споры.</div>
+          </div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>03. Чего делать нельзя</span><span>▾</span>
+            </button>
+            <div class="faq-answer">Не закрывайте долги и микрозаймы вместо близкого и не давайте деньги на срывы.</div>
+          </div>
+          <div class="faq-row">
+            <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
+              <span>04. Экстренная ситуация</span><span>▾</span>
+            </button>
+            <div class="faq-answer">При угрозе жизни или передозировке звоните 103 или 112.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ЗАПИСЬ -->
+      <section id="view-booking" class="tab-view">
+        <div class="section-heading"><span>Запись на консультацию</span></div>
+        <div class="card-panel">
+          <div id="attachedTestBanner" style="display:none;background:#DCE6E4;color:var(--teal-deep);padding:9px 11px;border-radius:13px;font-size:11.5px;font-weight:700;margin-bottom:12px;"></div>
+
+          <div class="form-field">
+            <label class="form-label" for="topicSelect">1. Тема обращения</label>
+            <select id="topicSelect" class="form-select" onchange="onTopicChange(this.value)">
+              <option value="Индивидуальная консультация">Индивидуальная консультация</option>
+              <option value="Замотивировать на лечение">Замотивировать на лечение</option>
+              <option value="Объяснить механизм зависимости">Объяснить механизм зависимости</option>
+              <option value="Организовать изоляцию и терапию">Организовать изоляцию и терапию</option>
+              <option value="Выбрать реабилитационный центр">Выбрать реабилитационный центр</option>
+            </select>
+            <div id="topicChipsBox" class="chips-wrap"></div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="nameInput">2. Имя или псевдоним</label>
+            <input id="nameInput" type="text" class="form-input" placeholder="Анонимно" oninput="updatePreview()" />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label" for="formatSelect">3. Формат встречи</label>
+            <select id="formatSelect" class="form-select" onchange="updatePreview()">
+              <option value="Очно в кабинете (Лососинское ш., 7)">Очно в кабинете (Лососинское ш., 7)</option>
+              <option value="Звонок по телефону">Звонок по телефону</option>
+              <option value="Переписка в Telegram / ВК">Переписка в Telegram / ВК</option>
+            </select>
+          </div>
+
+          <div class="form-field" style="margin-bottom:0;">
+            <label class="form-label" for="timeSelect">4. Удобное время</label>
+            <select id="timeSelect" class="form-select" onchange="updatePreview()">
+              <option value="В ближайшее время">Сейчас / сегодня</option>
+              <option value="Днём (10:00 – 18:00)">Днём (10:00 – 18:00)</option>
+              <option value="Вечером (после 18:00)">После 18:00</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="preview-card wood-surface">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:11px;font-weight:800;color:var(--ochre-glow);text-transform:uppercase;">Сообщение для Ани</span>
+            <button type="button" class="mini-btn" style="background:rgba(255,255,255,0.14);color:var(--ochre-light);border:none;" onclick="copyMessageText()">Копировать</button>
+          </div>
+          <div id="messagePreview" class="preview-text"></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a id="tgSendLink" href="https://t.me/Antoinette_nonarko" target="_blank" rel="noopener noreferrer" class="btn-primary-teal" style="width:100%;">Написать Ане в Telegram (@Antoinette_nonarko)</a>
+            <a href="https://vk.me/nonarko_ptz" target="_blank" rel="noopener noreferrer" class="btn-primary-wood" style="width:100%;background:#EFE8DC;color:#2E231D;">Открыть диалог ВКонтакте (nonarko_ptz)</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- КОНТАКТЫ -->
+      <section id="view-contacts" class="tab-view">
+        <div class="section-heading"><span>Контакты в Петрозаводске</span></div>
+        <div class="hero-box plaster-surface" style="text-align:left;">
+          <div style="position:relative;z-index:1;">
+            <div style="font-size:10.5px;font-weight:800;color:#1E3B3E;text-transform:uppercase;">Информационный кабинет</div>
+            <div style="font-family:'Manrope',sans-serif;font-size:15px;font-weight:800;color:#1F2424;margin:4px 0 10px;">
+              г. Петрозаводск, Лососинское шоссе, 7, второй этаж
+            </div>
+            <a href="https://yandex.ru/maps/?text=%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B7%D0%B0%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%2C%20%D0%9B%D0%BE%D1%81%D0%BE%D1%81%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%207" target="_blank" rel="noopener noreferrer" class="btn-primary-wood" style="width:100%;">Открыть на Яндекс.Картах ↗</a>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div style="font-size:13px;font-weight:800;margin-bottom:8px;">Телефоны для записи</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="tel:+78142776304" class="btn-primary-teal" style="width:100%;">Позвонить: +7 (8142) 77-63-04</a>
+            <a href="tel:+79114220815" class="btn-primary-wood" style="width:100%;">Позвонить: 8 911 422-08-15</a>
+          </div>
+        </div>
+
+        <div class="card-panel" style="margin-bottom:0;">
+          <div style="font-size:13px;font-weight:800;margin-bottom:8px;">Соцсети и мессенджеры</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://t.me/Antoinette_nonarko" target="_blank" rel="noopener noreferrer" class="chip-btn" style="text-align:center;padding:10px;">Telegram: @Antoinette_nonarko</a>
+            <a href="https://vk.com/nonarko_ptz" target="_blank" rel="noopener noreferrer" class="chip-btn" style="text-align:center;padding:10px;">ВКонтакте: vk.com/nonarko_ptz</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="bottom-bar-wrap">
+      <nav class="bottom-bar" aria-label="Навигация">
+        <button type="button" id="nav-home" class="tab-nav-btn active" onclick="switchTab('home')">
+          <span>🏠</span><span>Главная</span>
+        </button>
+        <button type="button" id="nav-help" class="tab-nav-btn" onclick="switchTab('help')">
+          <span>📋</span><span>Тест / Гайд</span>
+        </button>
+        <button type="button" id="nav-booking" class="tab-nav-btn" onclick="switchTab('booking')">
+          <span>✉️</span><span>Запись</span>
+        </button>
+        <button type="button" id="nav-contacts" class="tab-nav-btn" onclick="switchTab('contacts')">
+          <span>📍</span><span>Контакты</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА ТЕЛЕФОНОВ -->
+  <div id="callModal" class="modal-backdrop" onclick="if(event.target===this) closeModal('callModal')">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <strong style="font-size:15px;">Позвонить в кабинет</strong>
+        <button type="button" class="exit-btn" onclick="closeModal('callModal')">✕</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="tel:+78142776304" class="btn-primary-teal" style="width:100%;">+7 (8142) 77-63-04</a>
+        <a href="tel:+79114220815" class="btn-primary-wood" style="width:100%;">8 911 422-08-15</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА УСТАНОВКИ -->
+  <div id="installModal" class="modal-backdrop" onclick="if(event.target===this) closeModal('installModal')">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <strong style="font-size:15px;">Установить на экран «Домой»</strong>
+        <button type="button" class="exit-btn" onclick="closeModal('installModal')">✕</button>
+      </div>
+      <p style="font-size:12.5px;color:#4A433C;margin:0 0 12px;">
+        • <b>iPhone (Safari):</b> «Поделиться» → «На экран „Домой“».<br/>
+        • <b>Android (Chrome):</b> меню «⋮» → «Добавить на главный экран».
+      </p>
+      <button type="button" class="btn-primary-wood" style="width:100%;" onclick="closeModal('installModal')">Понятно</button>
+    </div>
+  </div>
+
+  <script>
+    const TOPICS = [
+      'Индивидуальная консультация',
+      'Замотивировать на лечение',
+      'Объяснить механизм зависимости',
+      'Организовать изоляцию и терапию',
+      'Выбрать реабилитационный центр'
+    ];
+
+    const QUESTIONS = [
+      'Близкий отрицает проблему и раздражается при попытке поговорить?',
+      'Замечаете пропажу денег, долги или просьбы перехватить до зарплаты?',
+      'Проверяете телефон, состояние или контролируете возвращение домой?',
+      'Прикрываете близкого перед родными, работой или знакомыми?',
+      'Оплачивали его долги или решали проблемы после срывов?',
+      'Живёте в постоянной тревоге и откладываете свои дела?'
+    ];
+
+    const appState = {
+      topic: 'Индивидуальная консультация',
+      answers: {},
+      testNote: ''
+    };
+
+    function showToast(msg) {
+      const el = document.getElementById('toastMsg');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+    }
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-' + tab).classList.add('active');
+      document.getElementById('nav-' + tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBookingWithTopic(topic) {
+      appState.topic = topic;
+      document.getElementById('topicSelect').value = topic;
+      renderChips();
+      updatePreview();
+      switchTab('booking');
+      showToast('Тема: ' + topic);
+    }
+
+    function onTopicChange(topic) {
+      appState.topic = topic;
+      renderChips();
+      updatePreview();
+    }
+
+    function renderChips() {
+      const box = document.getElementById('topicChipsBox');
+      box.innerHTML = '';
+      TOPICS.forEach(t => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = t;
+        b.className = 'chip-btn' + (appState.topic === t ? ' active' : '');
+        b.addEventListener('click', () => goBookingWithTopic(t));
+        box.appendChild(b);
+      });
+    }
+
+    function toggleStory() {
+      const d = document.getElementById('storyDrawer');
+      const a = document.getElementById('storyArrow');
+      const open = d.classList.toggle('open');
+      a.textContent = open ? '▴' : '▾';
+    }
+
+    function toggleFaqRow(btn) {
+      btn.parentElement.classList.toggle('open');
+    }
+
+    function switchSubTab(mode) {
+      const isTest = mode === 'test';
+      document.getElementById('subPanelTest').style.display = isTest ? 'block' : 'none';
+      document.getElementById('subPanelGuides').style.display = isTest ? 'none' : 'block';
+      document.getElementById('subBtnTest').classList.toggle('active', isTest);
+      document.getElementById('subBtnGuides').classList.toggle('active', !isTest);
+    }
+
+    function renderTest() {
+      const box = document.getElementById('testQuestionsBox');
+      box.innerHTML = QUESTIONS.map((q, i) => {
+        const picked = appState.answers[i];
+        return `
+          <div class="q-card">
+            <div style="font-size:12px;font-weight:600;">${i + 1}. ${q}</div>
+            <div class="q-opts">
+              <button type="button" class="q-opt-btn ${picked === 0 ? 'picked-0' : ''}" onclick="pickAns(${i},0)">Никогда</button>
+              <button type="button" class="q-opt-btn ${picked === 1 ? 'picked-1' : ''}" onclick="pickAns(${i},1)">Иногда</button>
+              <button type="button" class="q-opt-btn ${picked === 2 ? 'picked-2' : ''}" onclick="pickAns(${i},2)">Часто</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function pickAns(idx, val) {
+      appState.answers[idx] = val;
+      renderTest();
+    }
+
+    function calcFamilyTest() {
+      if (Object.keys(appState.answers).length < QUESTIONS.length) {
+        showToast('Ответьте на все 6 вопросов');
+        return;
+      }
+      const sum = Object.values(appState.answers).reduce((a, b) => a + b, 0);
+      let text = '';
+      if (sum <= 3) {
+        text = 'Начальный уровень тревоги (' + sum + '/12). Полезно спокойно обсудить первые сигналы.';
+        appState.testNote = 'Тест: ' + sum + '/12 (начальный уровень)';
+      } else if (sum <= 7) {
+        text = 'Повышенная нагрузка (' + sum + '/12). Важно выстроить чёткие границы и план разговора.';
+        appState.testNote = 'Тест: ' + sum + '/12 (повышенная нагрузка)';
+      } else {
+        text = 'Высокая нагрузка (' + sum + '/12). Не оставайтесь в одиночестве — поможем с мотивацией и планом.';
+        appState.testNote = 'Тест: ' + sum + '/12 (высокая нагрузка)';
+      }
+      const res = document.getElementById('testResultBox');
+      res.style.display = 'block';
+      res.innerHTML = `
+        <div style="font-size:12.5px;font-weight:700;margin-bottom:8px;">${text}</div>
+        <button type="button" class="btn-primary-teal" style="width:100%;" onclick="attachTestAndBook()">Прикрепить к заявке →</button>
+      `;
+    }
+
+    function resetFamilyTest() {
+      appState.answers = {};
+      appState.testNote = '';
+      document.getElementById('testResultBox').style.display = 'none';
+      document.getElementById('attachedTestBanner').style.display = 'none';
+      renderTest();
+      updatePreview();
+    }
+
+    function attachTestAndBook() {
+      const b = document.getElementById('attachedTestBanner');
+      b.textContent = 'Прикреплено: ' + appState.testNote;
+      b.style.display = 'block';
+      updatePreview();
+      switchTab('booking');
+    }
+
+    function buildMessage() {
+      const name = document.getElementById('nameInput').value.trim() || 'Анонимно';
+      const topic = document.getElementById('topicSelect').value;
+      const format = document.getElementById('formatSelect').value;
+      const time = document.getElementById('timeSelect').value;
+      const lines = [
+        'Здравствуйте, Аня! Обращение с сайта НоНарко | ПТЗ:',
+        '• Имя / псевдоним: ' + name,
+        '• Тема: ' + topic,
+        '• Формат: ' + format,
+        '• Время: ' + time
+      ];
+      if (appState.testNote) lines.push('• ' + appState.testNote);
+      return lines.join('
+');
+    }
+
+    function updatePreview() {
+      const msg = buildMessage();
+      document.getElementById('messagePreview').textContent = msg;
+      document.getElementById('tgSendLink').href = 'https://t.me/Antoinette_nonarko?text=' + encodeURIComponent(msg);
+    }
+
+    function copyMessageText() {
+      const msg = buildMessage();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(msg).then(() => showToast('Текст скопирован')).catch(() => {});
+      }
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    function toggleWeatherMask(show) {
+      document.getElementById('weatherMask').classList.toggle('active', show);
+    }
+
+    document.getElementById('returnFromWeatherBtn').addEventListener('click', () => toggleWeatherMask(false));
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    renderChips();
+    renderTest();
+    updatePreview();
+  </script>
+</body>
+</html>
