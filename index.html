@@ -6,14 +6,14 @@
 <title>НоНарко. Консультации о зависимости | ПТЗ</title>
 
 <!-- ===== PWA: правка A ===== -->
-<link rel="manifest" href="/Es/manifest.json">
+<link rel="manifest" href="/Yo/manifest.json">
 <meta name="theme-color" content="#2c4a52">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="НоНарко">
-<link rel="apple-touch-icon" href="/Es/icons/icon-192.png">
-<link rel="icon" type="image/png" href="/Es/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/Yo/icons/icon-192.png">
+<link rel="icon" type="image/png" href="/Yo/icons/icon-192.png">
 <!-- ===== /PWA ===== -->
 
 <style>
@@ -1097,7 +1097,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/Es/service-worker.js')
+      navigator.serviceWorker.register('/Yo/service-worker.js')
         .then((reg) => console.log('SW OK:', reg.scope))
         .catch((err) => console.warn('SW error:', err));
     });
