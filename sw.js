@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nonarko-ptz-office-v7';
+const CACHE_NAME = 'nonarko-ptz-office-v8';
 const CORE_ASSETS = [
   './',
   './index.html',
