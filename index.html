@@ -995,6 +995,71 @@
       opacity: 0.36;
     }
 
+    /* Мягкие переливы света и лёгкий тактильный отклик без тяжёлых эффектов */
+    @keyframes softSheen {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .plaster-surface,
+    .plaster-tile,
+    .plaster-tile-alt {
+      background-size: 135% 135%;
+      animation: softSheen 9s ease-in-out infinite;
+    }
+
+    .plaster-tile-alt {
+      animation-delay: -3.5s;
+    }
+
+    .tactile-card {
+      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+    }
+
+    .tactile-card:active {
+      transform: scale(0.985);
+    }
+
+    button:active,
+    a.btn-primary-wood:active,
+    a.btn-primary-teal:active,
+    .help-tile:active,
+    .chip-btn:active,
+    .q-opt-btn:active,
+    .subtab-btn:active,
+    .tab-nav-btn:active,
+    .story-toggle-btn:active,
+    .faq-btn:active {
+      transform: scale(0.972);
+    }
+
+    .help-tile,
+    .btn-primary-wood,
+    .btn-primary-teal,
+    .chip-btn,
+    .q-opt-btn,
+    .subtab-btn,
+    .tab-nav-btn,
+    .story-toggle-btn,
+    .faq-btn {
+      will-change: transform;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .plaster-surface,
+      .plaster-tile,
+      .plaster-tile-alt {
+        animation: none;
+      }
+      button, a, .help-tile, .tactile-card {
+        transition: none !important;
+      }
+    }
+
     .toast-msg {
       position: fixed;
       top: 74px;
@@ -1070,7 +1135,7 @@
         </div>
 
         <div class="section-heading"><span>Консультант кабинета</span></div>
-        <div class="consultant-card">
+        <div class="consultant-card tactile-card">
           <div class="consultant-row">
             <div class="consultant-badge-col wood-surface">
               <div class="consultant-photo-box">
@@ -1143,7 +1208,7 @@
           </button>
         </div>
 
-        <div class="card-panel">
+        <div class="card-panel tactile-card">
           <div class="section-heading"><span>С чего начать родственнику</span></div>
           <div class="step-item">
             <span class="step-circle">1</span>
@@ -1168,7 +1233,7 @@
           </div>
         </div>
 
-        <div class="card-panel">
+        <div class="card-panel tactile-card">
           <div class="section-heading"><span>Частые вопросы</span></div>
           <div class="faq-row">
             <button type="button" class="faq-btn" onclick="toggleFaqRow(this)">
@@ -1199,7 +1264,7 @@
           <button type="button" id="subBtnGuides" class="subtab-btn" onclick="switchSubTab('guides')">Фразы и памятки</button>
         </div>
 
-        <div id="subPanelTest" class="card-panel">
+        <div id="subPanelTest" class="card-panel tactile-card">
           <div id="testQuestionsBox"></div>
           <div style="display:flex;gap:8px;margin-top:8px;">
             <button type="button" class="btn-primary-wood" style="flex:1;" onclick="calcFamilyTest()">Узнать результат</button>
@@ -1208,7 +1273,7 @@
           <div id="testResultBox" style="display:none;margin-top:12px;padding:12px;border-radius:15px;background:var(--bg-sand);border:1px solid var(--teal-plaster);"></div>
         </div>
 
-        <div id="subPanelGuides" class="card-panel" style="display:none;">
+        <div id="subPanelGuides" class="card-panel tactile-card" style="display:none;">
           <div style="font-size:11.5px;color:var(--ink-muted);margin-bottom:8px;">
             Спокойные формулировки без скандалов и упрёков — можно скопировать перед разговором.
           </div>
@@ -1219,14 +1284,14 @@
             </button>
             <div class="faq-answer">
               Говорите только в трезвом состоянии и через свои чувства и факты, а не через ярлыки.
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-say">Что сказать</span>
                 <p class="phrase-quote">«Я вижу, что в последнее время тебе тяжело, и я очень переживаю за тебя и нашу семью. Я не хочу ругаться или читать лекции — давай спокойно подумаем, как с этим справиться».</p>
                 <div class="phrase-copy-row">
                   <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
                 </div>
               </div>
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-avoid">Чего лучше избегать</span>
                 <p class="phrase-avoid-text">«Ты опять всё испортил, ты зависимый, посмотри, в кого ты превратился» — это сразу включает защиту и агрессию.</p>
               </div>
@@ -1239,14 +1304,14 @@
             </button>
             <div class="faq-answer">
               Помощь деньгами продлевает проблему. Отказ должен быть спокойным, коротким и без оправданий.
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-say">Что сказать</span>
                 <p class="phrase-quote">«Я люблю тебя и готов(а) помочь с лечением и консультацией, но деньги давать и закрывать долги я больше не буду. Это моё твёрдое решение».</p>
                 <div class="phrase-copy-row">
                   <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
                 </div>
               </div>
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-avoid">Чего лучше избегать</span>
                 <p class="phrase-avoid-text">«Хорошо, в самый последний раз переведу, только пообещай, что больше не будешь».</p>
               </div>
@@ -1259,14 +1324,14 @@
             </button>
             <div class="faq-answer">
               Снимайте страх перед неизвестностью и не давите решением за одну секунду.
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-say">Что сказать</span>
                 <p class="phrase-quote">«Тебе не обязательно справляться с этим в одиночку. Давай просто анонимно поговорим со специалистом — без постановки на учёт и давления, просто чтобы понять варианты».</p>
                 <div class="phrase-copy-row">
                   <button type="button" class="mini-btn" onclick="copyPhrase(this)">Скопировать фразу</button>
                 </div>
               </div>
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-avoid">Чего лучше избегать</span>
                 <p class="phrase-avoid-text">Угроз, которые вы не готовы выполнить, и споров, когда человек в опьянении или на отходняке.</p>
               </div>
@@ -1279,7 +1344,7 @@
             </button>
             <div class="faq-answer">
               Не втягивайтесь в спор и не оправдывайтесь — возвращайте разговор к сути.
-              <div class="phrase-card">
+              <div class="phrase-card tactile-card">
                 <span class="phrase-tag-say">Что сказать</span>
                 <p class="phrase-quote">«Я слышу, что ты злишься, но спорить сейчас не буду. Когда будешь готов(а) спокойно обсудить, как выйти из этой ситуации, я рядом».</p>
                 <div class="phrase-copy-row">
@@ -1303,22 +1368,22 @@
             <span style="font-size:10.5px;font-weight:600;color:var(--ink-muted);">На каждый день</span>
           </div>
 
-          <div class="tip-card">
+          <div class="tip-card tactile-card">
             <div class="tip-card-head">1. Фиксируйте факты, а не эмоции</div>
             <p class="tip-card-body">Коротко записывайте даты срывов, суммы долгов и договорённости. В разговоре это помогает опираться на реальность, а не спорить о том, «кому показалось».</p>
           </div>
 
-          <div class="tip-card">
+          <div class="tip-card tactile-card">
             <div class="tip-card-head">2. Защитите документы, карты и наличные</div>
             <p class="tip-card-body">Держите паспорт, СНИЛС, банковские карты и наличные в надёжном месте, недоступном в момент срыва или срочного поиска денег.</p>
           </div>
 
-          <div class="tip-card">
+          <div class="tip-card tactile-card">
             <div class="tip-card-head">3. Не берите на себя чужую ответственность</div>
             <p class="tip-card-body">Звонки на работу, объяснения с кредиторами и покрытие прогулов создают иллюзию безопасности и оттягивают момент, когда человек сам увидит последствия.</p>
           </div>
 
-          <div class="tip-card">
+          <div class="tip-card tactile-card">
             <div class="tip-card-head">4. Держите свой ресурс хотя бы на минимуме</div>
             <p class="tip-card-body">Сон, еда, короткая прогулка и разговор с тем, кто не осуждает, нужны не для «эгоизма», а чтобы у вас оставались силы принимать трезвые решения.</p>
           </div>
@@ -1328,7 +1393,7 @@
       <!-- ЗАПИСЬ -->
       <section id="view-booking" class="tab-view">
         <div class="section-heading"><span>Запись на консультацию</span></div>
-        <div class="card-panel">
+        <div class="card-panel tactile-card">
           <div id="attachedTestBanner" style="display:none;background:#DCE6E4;color:var(--teal-deep);padding:9px 11px;border-radius:13px;font-size:11.5px;font-weight:700;margin-bottom:12px;"></div>
 
           <div class="form-field">
@@ -1367,7 +1432,7 @@
           </div>
         </div>
 
-        <div class="preview-card wood-surface">
+        <div class="preview-card wood-surface tactile-card">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:11px;font-weight:800;color:var(--ochre-glow);text-transform:uppercase;">Сообщение для Ани</span>
             <button type="button" class="mini-btn" style="background:rgba(255,255,255,0.14);color:var(--ochre-light);border:none;" onclick="copyMessageText()">Копировать</button>
@@ -1393,7 +1458,7 @@
           </div>
         </div>
 
-        <div class="card-panel">
+        <div class="card-panel tactile-card">
           <div style="font-size:13px;font-weight:800;margin-bottom:8px;">Телефоны для записи</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <a href="tel:+78142776304" class="btn-primary-teal" style="width:100%;">Позвонить: +7 (8142) 77-63-04</a>
@@ -1401,7 +1466,7 @@
           </div>
         </div>
 
-        <div class="card-panel" style="margin-bottom:0;">
+        <div class="card-panel tactile-card" style="margin-bottom:0;">
           <div style="font-size:13px;font-weight:800;margin-bottom:8px;">Соцсети и мессенджеры</div>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <a href="https://t.me/Antoinette_nonarko" target="_blank" rel="noopener noreferrer" class="chip-btn" style="text-align:center;padding:10px;">Telegram: @Antoinette_nonarko</a>
@@ -1550,7 +1615,7 @@
       box.innerHTML = QUESTIONS.map((q, i) => {
         const picked = appState.answers[i];
         return `
-          <div class="q-card">
+          <div class="q-card tactile-card">
             <div style="font-size:12px;font-weight:600;">${i + 1}. ${q}</div>
             <div class="q-opts">
               <button type="button" class="q-opt-btn ${picked === 0 ? 'picked-0' : ''}" onclick="pickAns(${i},0)">Никогда</button>
