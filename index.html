@@ -995,7 +995,7 @@
       opacity: 0.36;
     }
 
-    /* Мягкие переливы света и лёгкий тактильный отклик без тяжёлых эффектов */
+    /* Мягкие переливы света, живой акцент и лёгкий тактильный отклик */
     @keyframes softSheen {
       0%, 100% {
         background-position: 0% 50%;
@@ -1005,23 +1005,38 @@
       }
     }
 
+    @keyframes dotBreath {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.85;
+      }
+      50% {
+        transform: scale(1.28);
+        opacity: 1;
+      }
+    }
+
     .plaster-surface,
     .plaster-tile,
     .plaster-tile-alt {
-      background-size: 135% 135%;
-      animation: softSheen 9s ease-in-out infinite;
+      background-size: 145% 145%;
+      animation: softSheen 7.5s ease-in-out infinite;
     }
 
     .plaster-tile-alt {
-      animation-delay: -3.5s;
+      animation-delay: -3.2s;
+    }
+
+    .ochre-dot {
+      animation: dotBreath 2.8s ease-in-out infinite;
     }
 
     .tactile-card {
-      transition: transform 0.14s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      transition: transform 0.14s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .tactile-card:active {
-      transform: scale(0.985);
+      transform: scale(0.984);
     }
 
     button:active,
@@ -1034,7 +1049,7 @@
     .tab-nav-btn:active,
     .story-toggle-btn:active,
     .faq-btn:active {
-      transform: scale(0.972);
+      transform: scale(0.97);
     }
 
     .help-tile,
@@ -1052,7 +1067,8 @@
     @media (prefers-reduced-motion: reduce) {
       .plaster-surface,
       .plaster-tile,
-      .plaster-tile-alt {
+      .plaster-tile-alt,
+      .ochre-dot {
         animation: none;
       }
       button, a, .help-tile, .tactile-card {
